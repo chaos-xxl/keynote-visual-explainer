@@ -55,6 +55,10 @@ git clone https://github.com/chaos-xxl/keynote-visual-explainer.git "$HOME/.agen
 
 ![Kitchen workflow illustration](assets/kitchen-workflow.png)
 
+![Super-agent multitasking and attention](assets/super-agent-multitasking.png)
+
+![A2UI travel planning comparison](assets/a2ui-travel-planning.png)
+
 **设计规则与结构范式：** [`SKILL.md`](SKILL.md) · [`visual-system.md`](references/visual-system.md) · [`composition-patterns.md`](references/composition-patterns.md)
 
 ### 设计原则
@@ -118,10 +122,12 @@ keynote-visual-explainer/
 │   ├── visual-system.md
 │   └── composition-patterns.md
 └── assets/
+    ├── a2ui-travel-planning.png
     ├── kitchen-workflow.png
     ├── reference-minimal.jpg
     ├── reference-three-paths.jpg
-    └── reference-architecture.jpg
+    ├── reference-architecture.jpg
+    └── super-agent-multitasking.png
 ```
 
 ## License
