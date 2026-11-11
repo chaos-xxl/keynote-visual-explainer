@@ -39,24 +39,26 @@ metadata:
 
 不应把所有段落逐字转成图片。优先**抽象**，但不能把两种机制画成相同流程。
 
-### 2. 选一种最自然的构图
+### 2. 用读者需要看懂的关系决定构图
 
-根据语义从下列版式中挑选一种，具体例子见 `references/composition-patterns.md`：
+先问读者要看懂的是“先后怎么发生”“谁负责什么”，还是“几种做法差在哪”。选择一个主版式，具体例子见 [结构版式](references/composition-patterns.md)：
 - **一条链**：输入 → 核心决策/转换 → 输出（流程、权力交接）。
 - **双/三栏对比**：共享视觉基准，仅突出不同规则或控制权。
-- **中心辐射/主从分层**：中央调度器 → 多执行单元，并让底层状态与监控独立成层（系统架构）。
+- **分层架构**：当读者需要区分交互、协调和执行时，优先按职责分层。在画布上给核心调度角色最大的视觉分量，让并行执行单元同层排列，把共享能力放在旁侧或底层。读 [分层架构示例](references/composition-patterns.md#d-分层架构中心协调多单元并行)。
 - **前后变化**：过去与现在，展示一个关键关系的增删。
 - **二维曲线/坐标**：清晰轴向、曲线、少量锚点；位置必须与原文的方向相符。
 - **生活隐喻**：厨房、旅行社、商场等场景，场景服务于机制，不做人物故事海报。
 
 默认画幅 **16:9 横向**，PPT/Keynote 适配；用户指定其他比例时以用户要求为准。
 
+生成前写清楚画布上的相对位置：**第一眼看哪里、各角色放在哪一层、哪几个元素同级、辅助能力放在哪里**。把这些位置和尺寸关系写进提示词。箭头只补充有意义的方向、回传或边界，避免为每个技术名词排一个等大的图标。
+
 ### 3. 套用视觉系统
 
-详见 `references/visual-system.md`。默认：
+详见 [视觉规范](references/visual-system.md)。用户提供风格参考时，先看图并提取两三项可复用特征（例如视觉重心、分层方式、角色造型）。生成工具支持参考图时，将它明确标为**构图或风格参考**，内容和连线按当前题目独立核对。默认：
 - **背景**：瓷白 / 雾白，极轻的冷灰蓝渐变，柔和工作室光，无明显纹理。
 - **主体**：简洁 2.5D / 柔和 3D，奶白哑光陶瓷、磨砂塑料、少量阳极氧化金属；形体圆润、边缘精准，真实但不过度写实。
-- **人物**：无五官、白瓷材质、圆润人偶；只在表达角色或行为时使用。AI 角色可使用少量蓝色符号，但不要默认让机器人占画面中心。
+- **人物**：无五官、白瓷材质、圆润人偶。角色分工是主旨时，优先给不同职责可识别的造型（如用户、调度员、执行工位）；设备、资源和存储则用对应物件。仅在隐喻与实际职责相符时使用。
 - **配色**：雾蓝、浅灰、中性白为主；亮蓝只强调主路径；薄荷绿强调成功/许可，暖橙/柔红仅用于风险/异常。
 - **构图**：严格对齐、统一大小和视角、易识别剪影、圆角基座/卡片、小而软的落地阴影。
 - **线条**：流向实线箭头、状态/条件虚线箭头；避免箭头穿过对象或多处交叉。
@@ -66,21 +68,22 @@ metadata:
 
 优先遵循用户的明确约束：
 - 用户说 **“不要任何文字”“纯图形”**：完全不出现标题、标签、字母、数字、Logo、水印；用物体形态、空间关系与箭头解释。
-- 用户没有要求无字：允许**极简标注**。技术对比可保留 A2UI、Intelligent UI、Router、Worker 等必要短标签；最多 1 个主标题，每组仅 1 个短标签，不写长段说明。
+- 用户没有要求无字：保留一条主标题及必要标签。演示型架构图允许在关键层或核心角色旁加一条短职责说明（如“接单 · 派单 · 回传”）；这行应帮助读者理解职责。保留 A2UI、Intelligent UI、Router、Worker 等必要术语。
 - 用户提供长文时：**不要把整段文章排进图片**；文字只是必要的消歧，不是主要载体。
 - 若生成器中文文字稳定性欠佳，则进一步减字、用图标与后期可编辑标注代替；不要牺牲语义准确性。
 
-### 5. 质量检查（生成前）
+### 5. 生成前校对结构，生成后检查成图
 
 - **3 秒测试**：能否不看正文就认出关键参与者和主关系？
 - **对比测试**：每一种路线真正不同的点是否在画面中可见？
 - **因果测试**：箭头方向正确吗？条件变化、权限边界、控制主体有没有画反？
-- **层级测试**：最重要的主体是否最显眼？有无抢戏的标题、装饰、巨大机器人？
+- **层级测试**：缩到演示文稿缩略图大小时，是否仍能认出唯一视觉重心，并区分交互层、执行层和辅助能力？标题或辅助模块是否抢了主角的分量？
 - **删减测试**：删掉任何一个装饰元素，会不会更清爽？如果会，删掉。
 - **一致性测试**：同一角色在不同分镜中是否同形，同一颜色是否同义？
 - **约束测试**：比例/无字/节点数量/用户提供的术语是否被严格遵守？
 
 若结果太复杂，优先减少物件、标注、卡片层数与次要场景，**不要只是缩小字体或压缩间距**。
+看成图时逐条核对关键连线的起点、终点、方向和分支数量，并检查图中文字。发现主从关系、分支基数或文字错误时，修正后再交付。
 
 ## 图像生成提示词骨架
 
@@ -94,16 +97,18 @@ rounded geometry, elegant studio lighting, delicate shadows, ample negative spac
 and a restrained palette of ivory, slate-gray and soft blue.
 
 CORE CLAIM: [one-sentence takeaway].
-COMPOSITION: [one clear diagram layout].
-VISUAL ENTITIES: [the few essential actors/objects, their exact roles].
-RELATIONSHIPS: [direction of arrows, branching, boundaries, ownership, or states].
+COMPOSITION: [reading order, focal subject and relative size, placement of
+layers or groups, position of supporting capabilities].
+VISUAL ENTITIES: [essential roles and the recognizable form that expresses each].
+RELATIONSHIPS: [source, target, direction and one-to-one/one-to-many meaning
+of each necessary connection; group related elements before adding arrows].
 CRITICAL DISTINCTIONS: [the facts that must not be visually conflated].
 
 Visual storytelling over text. Every object has a semantic purpose.
 Keep silhouettes instantly recognizable. Consistent perspective, scale,
 lighting, arrow design and color semantics throughout.
 
-TEXT POLICY: [absolutely no text / a few accurate short labels in ...].
+TEXT POLICY: [absolutely no text / exact labels and any short role descriptions].
 
 AVOID: busy infographic dashboards, long copy, decorative filler, excessive
 icons, overly glossy glassmorphism, neon, sci-fi holograms, generic blue robots,
@@ -113,7 +118,7 @@ logos, watermarks and confusing arrows.
 
 ## 难点处理
 
-- **深层架构图**：用 4–6 个水平/垂直分组承载更多细节，先呈现主流程，再展示持久状态、监测和异常路径；不要把所有模块无差别装成卡片。
+- **深层架构图**：先确定讲的是角色分工还是事件流。归并同一职责的实现细节，仅展开会改变读者理解的权限、状态或异常路径。
 - **一句话可以画清的事情**：不要做多宫格大信息图；一幅统一场景或一个三节点关系更好。
 - **技术机制 + 日常隐喻**：保留技术真实关系，隐喻只做角色映射。不要因隐喻方便而改变协议、执行权或资源边界。
 - **系列配图**：如需连续多张，优先固定人物/主色/俯视角度/箭头表达，以相同模板替换实体；不要每张随机重新发明风格。
@@ -124,4 +129,4 @@ logos, watermarks and confusing arrows.
 - `references/visual-system.md`：造型、材质、色彩、排版、常见失败模式。
 - `references/composition-patterns.md`：针对不同信息关系的结构选择方法及三个真实题材示例。
 
-技能包中 `assets/` 的图片来自当前系列已绘制的示例，仅作**质感、留白、布局和抽象程度**参考。**不要复制它们的文字或假定其技术细节都准确**。抽象概念图优先参考 `reference-minimal.jpg`，三栏比较参考 `reference-three-paths.jpg`，架构图参考 `reference-architecture.jpg`。
+技能包中 `assets/` 的图片仅作**质感、留白、布局和抽象程度**参考。**不要复制它们的文字或假定其技术细节都准确**。抽象概念图可看 `assets/reference-minimal.jpg`，三栏比较可看 `assets/reference-three-paths.jpg`，调度与并行执行可看 `assets/super-agent-multitasking.png` 的角色造型，分层构图按 [架构示例](references/composition-patterns.md#d-分层架构中心协调多单元并行) 组织。
