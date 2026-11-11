@@ -51,7 +51,7 @@ git clone https://github.com/chaos-xxl/keynote-visual-explainer.git "$HOME/.agen
 | 多方案对比 | 同一基准下突出真正差异 | [Three paths](assets/reference-three-paths.jpg) |
 | 系统架构 | 输入、调度、并行执行、回传与状态管理 | [Architecture](assets/reference-architecture.jpg) |
 
-![Three-way comparison](assets/reference-three-paths.jpg)
+![Kitchen workflow illustration](assets/kitchen-workflow.png)
 
 ![System architecture](assets/reference-architecture.jpg)
 
@@ -118,6 +118,7 @@ keynote-visual-explainer/
 │   ├── visual-system.md
 │   └── composition-patterns.md
 └── assets/
+    ├── kitchen-workflow.png
     ├── reference-minimal.jpg
     ├── reference-three-paths.jpg
     └── reference-architecture.jpg
