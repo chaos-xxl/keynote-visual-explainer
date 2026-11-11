@@ -127,6 +127,7 @@ keynote-visual-explainer/
     ├── reference-minimal.jpg
     ├── reference-three-paths.jpg
     ├── reference-architecture.jpg
+    ├── reference-layered-architecture.png
     └── super-agent-multitasking.png
 ```
 

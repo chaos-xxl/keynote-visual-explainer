@@ -53,9 +53,13 @@ metadata:
 
 生成前写清楚画布上的相对位置：**第一眼看哪里、各角色放在哪一层、哪几个元素同级、辅助能力放在哪里**。把这些位置和尺寸关系写进提示词。箭头只补充有意义的方向、回传或边界，避免为每个技术名词排一个等大的图标。
 
-### 3. 套用视觉系统
+### 3. 选一张参考图，作为实际生成输入
 
-详见 [视觉规范](references/visual-system.md)。用户提供风格参考时，先看图并提取两三项可复用特征（例如视觉重心、分层方式、角色造型）。生成工具支持参考图时，将它明确标为**构图或风格参考**，内容和连线按当前题目独立核对。默认：
+1. **选图**。优先使用用户指定的图或本对话中用户选定的上一张成图。没有指定时，选同类的内置样图：分层架构用 [分层架构样图](assets/reference-layered-architecture.png)，多方案对比用 [三栏样图](assets/reference-three-paths.jpg)，单场景概念用 [简洁样图](assets/reference-minimal.jpg)，关系流程用 [厨房流程样图](assets/kitchen-workflow.png)。布局不匹配时，只参考它的光线、材质和配色。
+2. **把图传入生成器**。先查看图片，再通过生成工具的参考图或编辑图输入附上实际图片，按工具支持的方式使用文件、图片附件或已生成图。提示词里提到文件名不等于传入图片。若当前工具只能接收文字，说明这次采用文字近似，并按 [视觉规范](references/visual-system.md) 写明具体特征。
+3. **区分视觉沿用与内容替换**。同一张图的局部修改，将原图作为编辑目标，明确锁定位置、比例、造型、光线和排版。为新题目出图，将样图作为风格参考，只有结构合适时才沿用布局。根据新题目决定实体、文字、工位数量和箭头，不从样图继承旧内容。
+
+未指定画风时，从 [视觉规范](references/visual-system.md) 选取与参考图一致的特征：
 - **背景**：瓷白 / 雾白，极轻的冷灰蓝渐变，柔和工作室光，无明显纹理。
 - **主体**：简洁 2.5D / 柔和 3D，奶白哑光陶瓷、磨砂塑料、少量阳极氧化金属；形体圆润、边缘精准，真实但不过度写实。
 - **人物**：无五官、白瓷材质、圆润人偶。角色分工是主旨时，优先给不同职责可识别的造型（如用户、调度员、执行工位）；设备、资源和存储则用对应物件。仅在隐喻与实际职责相符时使用。
@@ -84,6 +88,7 @@ metadata:
 
 若结果太复杂，优先减少物件、标注、卡片层数与次要场景，**不要只是缩小字体或压缩间距**。
 看成图时逐条核对关键连线的起点、终点、方向和分支数量，并检查图中文字。发现主从关系、分支基数或文字错误时，修正后再交付。
+要求延续画风时，将成图与选中的参考并排看，核对背景冷暖、蓝色覆盖面积、角色轮廓和比例、标题位置与辅助信息的视觉分量。若偏离，保留参考图做有针对性的编辑。
 
 ## 图像生成提示词骨架
 
@@ -97,6 +102,8 @@ rounded geometry, elegant studio lighting, delicate shadows, ample negative spac
 and a restrained palette of ivory, slate-gray and soft blue.
 
 CORE CLAIM: [one-sentence takeaway].
+IMAGE INPUT: [attached reference image or edit target; which visual traits
+to retain, what content to replace, and what geometry is fixed].
 COMPOSITION: [reading order, focal subject and relative size, placement of
 layers or groups, position of supporting capabilities].
 VISUAL ENTITIES: [essential roles and the recognizable form that expresses each].
@@ -129,4 +136,4 @@ logos, watermarks and confusing arrows.
 - `references/visual-system.md`：造型、材质、色彩、排版、常见失败模式。
 - `references/composition-patterns.md`：针对不同信息关系的结构选择方法及三个真实题材示例。
 
-技能包中 `assets/` 的图片仅作**质感、留白、布局和抽象程度**参考。**不要复制它们的文字或假定其技术细节都准确**。抽象概念图可看 `assets/reference-minimal.jpg`，三栏比较可看 `assets/reference-three-paths.jpg`，调度与并行执行可看 `assets/super-agent-multitasking.png` 的角色造型，分层构图按 [架构示例](references/composition-patterns.md#d-分层架构中心协调多单元并行) 组织。
+技能包中的样图用于传递视觉特征。图中的技术名词和连线只适用于各自的题目。分层构图可结合 [架构示例](references/composition-patterns.md#d-分层架构中心协调多单元并行) 使用。
